@@ -1,0 +1,33 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide *ngFor="let image of FoodItem?.images">
+     <img [src]="image">
+    </ion-slide>
+
+  </ion-slides>
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>{{FoodItem?.rating}}</ion-card-subtitle>
+    <ion-card-title> {{FoodItem?.name}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-title>{{FoodItem?.price}}</ion-title>
+     <ion-chip color="primary" mode="ios" outline="true" *ngFor="let chip of FoodItem?.cuisine">
+        <ion-label>{{chip}}</ion-label>
+      </ion-chip>
+
+  <p>{{FoodItem?.detail}}</p>
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

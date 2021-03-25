@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>Welcome</ion-card-title>
+      <ion-card-subtitle>Create your account</ion-card-subtitle>
+      <form [formGroup]="cuisineForm">
+        <ion-item>
+          <ion-label position="floating"><h3>Cuisine Name</h3></ion-label>
+          <ion-input clearInput formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Price</h3></ion-label>
+          <ion-input clearInput formControlName="price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Sale Price</h3></ion-label>
+          <ion-input clearInput formControlName="saleprice"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>More Details</h3></ion-label>
+          <ion-input clearInput formControlName="detail"></ion-input>
+        </ion-item>
+      </form>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size-md="6" size-xs="12">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>Add Cuisine Images</ion-card-subtitle>
+                <ion-item>
+                  <ion-label position="floating"><h3>Image Url</h3></ion-label>
+                  <ion-input [formControl]="imageUrl" clearInput></ion-input>
+                  <ion-button (click)="AddImage()" slot="end">
+                    <ion-icon  name="add"></ion-icon>
+                    Add
+                  </ion-button>
+                </ion-item>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-row *ngIf="checkImages()">
+                  <div  *ngFor="let item of imagesList; index as i">
+                    <ion-col size="4">
+                      <ion-item class="con">
+                        <img [src]="item" />
+                        <ion-icon class="icon" name="close-circle" (click)="delete(1, i)"></ion-icon>
+                      </ion-item>
+                    </ion-col>
+                  </div>
+
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size-md="6" size-xs="12">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>Add Cuisine Details</ion-card-subtitle>
+                <ion-item>
+                  <ion-label position="floating"><h3>Category</h3></ion-label>
+                  <ion-input [formControl]="chips" clearInput></ion-input>
+                  <ion-button (click)="AddCatageory()"slot="end" >
+                    <ion-icon  name="add"></ion-icon>
+                    Add
+                  </ion-button>
+                </ion-item>
+              </ion-card-header>
+              <ion-card-content>
+                <div *ngIf="checkChips()">
+                  <ion-chip *ngFor="let item of chipsList; index as i">
+                    <ion-label>{{ item }}</ion-label>
+                    <ion-icon name="close-circle"  (click)="delete(0, i)"
+                    ></ion-icon>
+                  </ion-chip>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button expand="block" color="success" (click)="submitCuisine()">
+        Submit
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

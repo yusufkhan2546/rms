@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-searchbar animated  showCancelButton="focus" placeholder="Filter Schedules"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +10,55 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size-xs="12" size-md="6" offset-md="3">
+<ion-button expand="block" fill="solid" color="tertiary" routerLink="/tabs/tab2/newcuisine">
+  <ion-icon  slot="start" name="add"></ion-icon>
+  Add New Cuisine
+</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+<ion-col size-xs="12" size-md="6" *ngFor="let item of FoodItems;index as i">
+  <ion-item >
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size-xs="3">
+            <ion-row>
+              <ion-col size="6" *ngFor="let image of item?.images;index as i1">
+                <ion-thumbnail *ngIf="i1<=3">
+                  <img [src]="image"/>
+                </ion-thumbnail>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size-xs="6" style="padding: 5px">
+            <h4>{{item?.name}}</h4>
+            <ion-chip color="primary" mode="ios" outline="true" *ngFor="let chip of item?.cuisine;">
+              <ion-label>{{chip}}</ion-label>
+            </ion-chip>
+            <h5><b>MRP: {{item?.price}} &#8377;</b> <b>Sale: {{item?.saleprice}} &#8377;</b><b> {{getOffer(item?.offer)}}%Off</b></h5>
+            <p>{{item?.detail}}</p>
+          </ion-col>
+          <ion-col size-xs="3" class="newcol">
+            <ion-button style="margin-right: 8px" (click)="view(item)">
+              Edit <ion-icon name="pencil"></ion-icon>
+            </ion-button>
+            <ion-button style="margin-right: 8px" (click)="delete(item?._id,i)">
+              Delete <ion-icon name="trash"></ion-icon>
+            </ion-button>
+            <ion-button style="margin-right: 8px" (click)="edit(item)">
+              View <ion-icon name="eye"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

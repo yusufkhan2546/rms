@@ -1,0 +1,155 @@
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row >
+      <!-- <ion-col id="chartcol" size-md="8" size-xs="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Build In Seconds</ion-card-subtitle>
+            <ion-card-title>Awesome Resume</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+         <ion-img src="../../assets/img/uptodate.svg"></ion-img>
+          </ion-card-content>
+        </ion-card>
+      </ion-col> -->
+      <ion-col  size-md="4" offset-md="4" size-xs="12">
+     <ion-card id="logincard">
+
+       <ion-card-content *ngIf="!tab">
+
+        <ion-card-title>Welcome</ion-card-title>
+        <ion-card-subtitle>Sign In to your account</ion-card-subtitle>
+        <ion-button expand="block" color="dark">
+          <ion-icon slot="start" name="logo-github"></ion-icon>
+         <ion-label> <h4></h4></ion-label>
+        </ion-button>
+
+        <ion-button expand="block" color="tertiary">
+          <ion-icon slot="start" name="logo-facebook"></ion-icon>
+          Facebook
+        </ion-button>
+        <ion-button expand="block" color="light">
+          <ion-icon slot="start" name="logo-google"></ion-icon>
+          Google
+        </ion-button>
+        <br>
+        <p class="ion-text-center" routerLink="/tabs/tab1">Or Sign In With Credentials</p>
+        <form [formGroup] ="loginForm1" *ngIf="loginType">
+          <ion-item>
+            <ion-label position="floating" clearInput><h3>Email</h3></ion-label>
+            <ion-input clearInput formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"><h3>Password</h3></ion-label>
+            <ion-input clearInput formControlName="password"></ion-input>
+          </ion-item>
+        </form>
+        <form [formGroup] ="loginForm2"  *ngIf="!loginType">
+          <ion-item>
+            <ion-label position="floating" clearInput><h3>Phone</h3></ion-label>
+            <ion-input clearInput formControlName="phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"><h3>Password</h3></ion-label>
+            <ion-input clearInput formControlName="password"></ion-input>
+          </ion-item>
+        </form>
+
+        <br>
+        <p routerLink="/home/forgotpassword">Forgot Password?</p>
+        <ion-button expand="block" color="success" (click)="login()">
+          Login
+
+        </ion-button>
+        <ion-button expand="block" color="dark" (click)="changeMethod()">
+          {{loginType?'Use Mobile Instead':'Use Email Instead'}}
+        </ion-button>
+       </ion-card-content>
+       <ion-card-content *ngIf="tab">
+       <ion-card-title>Welcome</ion-card-title>
+       <ion-card-subtitle>Create your account</ion-card-subtitle>
+       <form [formGroup]="userForm">
+        <ion-item>
+          <ion-label position="floating"><h3>Restaurent Name</h3></ion-label>
+          <ion-input clearInput formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Phone</h3></ion-label>
+          <ion-input clearInput formControlName="phone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Email</h3></ion-label>
+          <ion-input clearInput formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Password</h3></ion-label>
+          <ion-input clearInput formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Confirm Password</h3></ion-label>
+          <ion-input clearInput formControlName="confirmpassword"></ion-input>
+        </ion-item>
+       <div formGroupName="address">
+        <ion-item>
+          <ion-label position="floating"><h3>Address Line1</h3></ion-label>
+          <ion-input clearInput formControlName="addressline1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Address Line2</h3></ion-label>
+          <ion-input clearInput formControlName="addressline2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>City</h3></ion-label>
+          <ion-input clearInput formControlName="city"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>State</h3></ion-label>
+          <ion-input clearInput formControlName="state"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Pin</h3></ion-label>
+          <ion-input clearInput formControlName="pin"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Phone</h3></ion-label>
+          <ion-input clearInput formControlName="phone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><h3>Name</h3></ion-label>
+          <ion-input clearInput formControlName="name"></ion-input>
+        </ion-item>
+       </div>
+       <ion-item>
+        <ion-label>Opening Time</ion-label>
+        <ion-datetime displayFormat="h:mm a"formControlName="openingtime" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Closing Time</ion-label>
+        <ion-datetime displayFormat="h:mm a" formControlName="closingtime"></ion-datetime>
+      </ion-item>
+
+       </form>
+
+       <ion-button expand="block" color="success" (click)="submitUser()">
+        Sign Up
+
+      </ion-button>
+     </ion-card-content>
+
+
+     </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer >
+  <ion-toolbar color="tertiary"  class="changetab">
+   <ion-button expand="block" *ngIf="!tab" routerLink="/home/signup"  color="tertiary" (click)="changeTab()">
+     SignUp Here
+    </ion-button>
+    <ion-button expand="block" *ngIf="tab" routerLink="/home/login"   color="tertiary" (click)="changeTab()">
+     Click Here to Login
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
